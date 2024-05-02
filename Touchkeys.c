@@ -1,11 +1,9 @@
 
 #include "Touchkeys.h"
-#include "API.h"
-#include "Buzzer.h"
-#include "LCD_ILI_9341_Driver.h"
-#include "main.h"
-#include "stm32f1xx_it.h"
-#include "Com.h"
+
+OperatingStatusType   UserDefinedStatus;
+OperatingStatusType   ScreenStatus;
+FunctionalStatusType  FunctionalStatus;
 
 void Touchkeys_User_Menu_Handler(void)
 {
