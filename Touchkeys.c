@@ -9,7 +9,7 @@ void Touchkeys_User_Menu_Handler(void)
 {
 	switch (FunctionalStatus.Touchkeys.TouchedKey)
 	{
-		case UP_KEY_TOUCHED:
+		case KEY_1_TOUCHED:
 			if(ScreenStatus.Struct.Data.PowerStatus == SYSTEM_ON)
 			{
 				if((ScreenStatus.Struct.Data.OperationModeStatus == COOL_OPERATION)||(ScreenStatus.Struct.Data.OperationModeStatus == HEAT_OPERATION))
@@ -22,7 +22,7 @@ void Touchkeys_User_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case DOWN_KEY_TOUCHED:
+		case KEY_2_TOUCHED:
 			if(ScreenStatus.Struct.Data.PowerStatus == SYSTEM_ON)
 			{
 				if((ScreenStatus.Struct.Data.OperationModeStatus == COOL_OPERATION)||(ScreenStatus.Struct.Data.OperationModeStatus == HEAT_OPERATION))
@@ -35,7 +35,7 @@ void Touchkeys_User_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case MODE_KEY_TOUCHED:
+		case KEY_3_TOUCHED:
 			if(ScreenStatus.Struct.Data.PowerStatus == SYSTEM_ON)
 			{
 				UserDefinedStatus.Struct.Data.OperationModeStatus++;
@@ -78,7 +78,7 @@ void Touchkeys_User_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case FAN_KEY_TOUCHED:
+		case KEY_4_TOUCHED:
 			if(ScreenStatus.Struct.Data.PowerStatus == SYSTEM_ON)
 			{
 				if(ScreenStatus.Struct.Data.OperationModeStatus != DRY_OPERATION)
@@ -91,7 +91,7 @@ void Touchkeys_User_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case POWER_KEY_TOUCHED:
+		case KEY_5_TOUCHED:
 			UserDefinedStatus.Struct.Data.PowerStatus     = !UserDefinedStatus.Struct.Data.PowerStatus;
 			TimerI.Flags.TenMinuteFlag = SET;
 			if(UserDefinedStatus.Struct.Data.PowerStatus == SYSTEM_ON)
@@ -105,13 +105,13 @@ void Touchkeys_User_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter 	  = ZERO_SECOND;
 			break;
 
-		case SWING_KEY_TOUCHED:
+		case KEY_6_TOUCHED:
 			if(ScreenStatus.Struct.Data.PowerStatus == SYSTEM_ON)
 				UserDefinedStatus.Struct.Setting.SwingMode = !UserDefinedStatus.Struct.Setting.SwingMode;
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case TIMER_KEY_TOUCHED:
+		case KEY_7_TOUCHED:
 			if(ScreenStatus.Struct.Data.PowerStatus == SYSTEM_ON)
 			{
 				if(UserDefinedStatus.Struct.Setting.OffTimerMinute < 30)
@@ -130,7 +130,7 @@ void Touchkeys_User_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case LIGHT_KEY_TOUCHED:
+		case KEY_8_TOUCHED:
 			HAL_GPIO_TogglePin(LCD_BL_GPIO_Port, LCD_BL_Pin);
 			HAL_GPIO_TogglePin(LCD_BL_DIM_GPIO_Port, LCD_BL_DIM_Pin);
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
@@ -145,7 +145,7 @@ void Touchkeys_Settings_Menu_Handler(void)
 {
 	switch (FunctionalStatus.Touchkeys.TouchedKey)
 	{
-		case UP_KEY_TOUCHED:
+		case KEY_1_TOUCHED:
 			UserDefinedStatus.Struct.Setting.BGcolorSelect++;
 			if(UserDefinedStatus.Struct.Setting.BGcolorSelect  > 20)
 				UserDefinedStatus.Struct.Setting.BGcolorSelect = 1;
@@ -153,7 +153,7 @@ void Touchkeys_Settings_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case DOWN_KEY_TOUCHED:
+		case KEY_2_TOUCHED:
 			UserDefinedStatus.Struct.Setting.BGcolorSelect--;
 			if(UserDefinedStatus.Struct.Setting.BGcolorSelect  < 1)
 				UserDefinedStatus.Struct.Setting.BGcolorSelect = 20;
@@ -161,18 +161,18 @@ void Touchkeys_Settings_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case MODE_KEY_TOUCHED:
+		case KEY_3_TOUCHED:
 			UserDefinedStatus.Struct.Setting.OperationType	= !UserDefinedStatus.Struct.Setting.OperationType;
 			FunctionalStatus.Touchkeys.IdleKeysCounter = 0;
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case FAN_KEY_TOUCHED:
+		case KEY_4_TOUCHED:
 			FunctionalStatus.Touchkeys.IdleKeysCounter = 0;
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case LIGHT_KEY_TOUCHED:
+		case KEY_8_TOUCHED:
 			FunctionalStatus.Touchkeys.IdleKeysCounter = 0;
 			HAL_GPIO_TogglePin(LCD_BL_GPIO_Port, LCD_BL_Pin);
 			HAL_GPIO_TogglePin(LCD_BL_DIM_GPIO_Port, LCD_BL_DIM_Pin);
@@ -189,7 +189,7 @@ void Touchkeys_Communication_Menu_Handler(void)
 {
 	switch (FunctionalStatus.Touchkeys.TouchedKey)
 	{
-		case UP_KEY_TOUCHED:
+		case KEY_1_TOUCHED:
 			UserDefinedStatus.Struct.Setting.NumberOfSlaves++;
 			if(UserDefinedStatus.Struct.Setting.NumberOfSlaves > 16)
 				UserDefinedStatus.Struct.Setting.NumberOfSlaves = 16;
@@ -197,7 +197,7 @@ void Touchkeys_Communication_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case DOWN_KEY_TOUCHED:
+		case KEY_2_TOUCHED:
 			UserDefinedStatus.Struct.Setting.NumberOfSlaves--;
 			if(UserDefinedStatus.Struct.Setting.NumberOfSlaves < 1)
 				UserDefinedStatus.Struct.Setting.NumberOfSlaves = 1;
@@ -205,7 +205,7 @@ void Touchkeys_Communication_Menu_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 			break;
 
-		case LIGHT_KEY_TOUCHED:
+		case KEY_8_TOUCHED:
 			FunctionalStatus.Touchkeys.IdleKeysCounter = ZERO_SECOND;
 			HAL_GPIO_TogglePin(LCD_BL_GPIO_Port, LCD_BL_Pin);
 			HAL_GPIO_TogglePin(LCD_BL_DIM_GPIO_Port, LCD_BL_DIM_Pin);
@@ -226,37 +226,37 @@ void Held_Down_Keys_Handler(void)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 		switch(FunctionalStatus.Touchkeys.TouchKeysStatus)
 		{
-			case UP_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = UP_KEY_TOUCHED;
+			case KEY_1_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_1_TOUCHED;
 				break;
 
-			case DOWN_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = DOWN_KEY_TOUCHED;
+			case KEY_2_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_2_TOUCHED;
 				break;
 
-			case MODE_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = MODE_KEY_TOUCHED;
+			case KEY_3_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_3_TOUCHED;
 				break;
 
-			case FAN_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = FAN_KEY_TOUCHED;
+			case KEY_4_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_4_TOUCHED;
 				break;
 
-			case POWER_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = POWER_KEY_TOUCHED;
+			case KEY_5_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_5_TOUCHED;
 				FunctionalStatus.Touchkeys.IdleKeysCounter = ZERO_SECOND;
 				break;
 
-			case TIMER_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = TIMER_KEY_TOUCHED;
+			case KEY_7_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_7_TOUCHED;
 				break;
 
-			case SWING_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = SWING_KEY_TOUCHED;
+			case KEY_6_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_6_TOUCHED;
 				break;
 
-			case LIGHT_KEY_TOUCHED:
-				FunctionalStatus.Touchkeys.TouchedKey = LIGHT_KEY_TOUCHED;
+			case KEY_8_TOUCHED:
+				FunctionalStatus.Touchkeys.TouchedKey = KEY_8_TOUCHED;
 				break;
 		}
 		if(FunctionalStatus.Display.ScreenMenu == USER_MENU)
@@ -268,7 +268,7 @@ void Held_Down_Keys_Handler(void)
 				{
 					switch(FunctionalStatus.Touchkeys.TouchKeysStatus)
 					{
-						case MODE_FAN_KEYS_TOUCHED:
+						case KEYS_1_2_TOUCHED:
 							FunctionalStatus.Display.ScreenMenu 		= COMMUNICATION_MENU;
 							ScreenStatus.Struct.Setting.NumberOfSlaves	= IRRELEVANT_VALUE;
 							FunctionalStatus.Display.Execution 			= 1;
@@ -277,7 +277,7 @@ void Held_Down_Keys_Handler(void)
 							FunctionalStatus.Touchkeys.TouchKeyCounter  = ZERO_SECOND;
 							break;
 
-						case SWING_TIMER_KEYS_TOUCHED:
+						case KEYS_6_7_TOUCHED:
 							FunctionalStatus.Display.Initializer 	   	 = EXECUTE_ONCE;
 							FunctionalStatus.Display.ScreenMenu  		 = SETTINGS_MENU;
 							FunctionalStatus.Touchkeys.TouchedKey        = NO_KEY_TOUCHED;
@@ -313,8 +313,6 @@ void Touched_Keys_Handler(void)
 {
 	if(FunctionalStatus.Touchkeys.TouchKeysStatus == NO_KEY_TOUCHED)
 	{
-//		if(FunctionalStatus.Touchkeys.TouchKeyCounter >= THREE_SECONDS)
-//			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 		if(FunctionalStatus.Touchkeys.TouchKeyCounter >= ONE_HALF_SECOND)
 			FunctionalStatus.Touchkeys.TouchKeyCounter = ZERO_SECOND;
 
@@ -332,7 +330,5 @@ void Keys_Handler(void)
 	FunctionalStatus.Touchkeys.TouchKeysStatus = (((GPIOB->IDR)&(0xFF00))>>8); //read PortB and return 8 MSBs
 	Touched_Keys_Handler();
 	Held_Down_Keys_Handler();
-//	} else
-//		Touchkeys_System_Power_Off_Handler();
 
 }
